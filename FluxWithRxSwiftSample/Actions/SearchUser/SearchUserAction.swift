@@ -39,9 +39,7 @@ class SearchUserAction {
         let params = ["q" : query,
                       "page" : page,
                       "per_page" : 30] as [String : Any]
-        // API取得処理など
         GitHubAPI.searchUser(customParams: params)
-            .observeOn(MainScheduler.instance)
             .do(onError: { [unowned self] error in
                 self.dispatcher.error.dispatch(error)
                 self.dispatcher.loading.dispatch(false)
