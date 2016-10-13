@@ -1,0 +1,86 @@
+PODS:
+  - APIKit (3.0.0-beta.2):
+    - Result (~> 3.0)
+  - Cartography (1.0.0)
+  - Himotoki (3.0.0)
+  - Kingfisher (3.1.1)
+  - NavigationNotice (1.2.1)
+  - Nimble (5.0.0)
+  - Quick (0.10.0)
+  - Result (3.0.0)
+  - RxCocoa (3.0.0-beta.2):
+    - RxSwift (~> 3.0.0-beta.2)
+  - RxSwift (3.0.0-beta.2)
+  - SpringIndicator (1.4.1)
+  - SwiftDate (4.0.1)
+
+DEPENDENCIES:
+  - APIKit (from `git@github.com:ishkawa/APIKit.git`, tag `3.0.0-beta.2`)
+  - Cartography (= 1.0.0)
+  - Himotoki (from `git@github.com:ikesyo/Himotoki.git`, tag `3.0.0`)
+  - Kingfisher (= 3.1.1)
+  - NavigationNotice (= 1.2.1)
+  - Nimble (from `git@github.com:Quick/Nimble.git`, branch `master`)
+  - Quick (from `git@github.com:Quick/Quick.git`, branch `master`)
+  - RxCocoa (from `git@github.com:ReactiveX/RxSwift.git`, tag `3.0.0-beta.2`)
+  - RxSwift (from `git@github.com:ReactiveX/RxSwift.git`, tag `3.0.0-beta.2`)
+  - SpringIndicator (= 1.4.1)
+  - SwiftDate (~> 4.0.1)
+
+EXTERNAL SOURCES:
+  APIKit:
+    :git: git@github.com:ishkawa/APIKit.git
+    :tag: 3.0.0-beta.2
+  Himotoki:
+    :git: git@github.com:ikesyo/Himotoki.git
+    :tag: 3.0.0
+  Nimble:
+    :branch: master
+    :git: git@github.com:Quick/Nimble.git
+  Quick:
+    :branch: master
+    :git: git@github.com:Quick/Quick.git
+  RxCocoa:
+    :git: git@github.com:ReactiveX/RxSwift.git
+    :tag: 3.0.0-beta.2
+  RxSwift:
+    :git: git@github.com:ReactiveX/RxSwift.git
+    :tag: 3.0.0-beta.2
+
+CHECKOUT OPTIONS:
+  APIKit:
+    :git: git@github.com:ishkawa/APIKit.git
+    :tag: 3.0.0-beta.2
+  Himotoki:
+    :git: git@github.com:ikesyo/Himotoki.git
+    :tag: 3.0.0
+  Nimble:
+    :commit: e73b141dfd2eefdd51f9bfe74fddd2e100110c6f
+    :git: git@github.com:Quick/Nimble.git
+  Quick:
+    :commit: cb9eb281f7f349e3b56b99bc3f26c2384a4e89ac
+    :git: git@github.com:Quick/Quick.git
+  RxCocoa:
+    :git: git@github.com:ReactiveX/RxSwift.git
+    :tag: 3.0.0-beta.2
+  RxSwift:
+    :git: git@github.com:ReactiveX/RxSwift.git
+    :tag: 3.0.0-beta.2
+
+SPEC CHECKSUMS:
+  APIKit: 7e9257f0220861ada9ffce0549ad3a0338dbbafa
+  Cartography: e576cf19c0c1f201686180bcf4537f981574ce8d
+  Himotoki: df74b01035e86e021b7b04a15b033a7fd189b84f
+  Kingfisher: 12b755ae697cc9f0fd3e550db8417fa1233e09ab
+  NavigationNotice: 9a0186fe9787436d6ece5ad88a9a923839ef2b4a
+  Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
+  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
+  Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
+  RxCocoa: 1dd105d8a4e18034ccd7bd6d136445363ce67c8e
+  RxSwift: 0ea939d7d97cb70657190ffde8dc2a9b455778fc
+  SpringIndicator: d2be83cf7dbab52d91d378a5d3a267187b4959e5
+  SwiftDate: a1770324d1dd4e94b4788aca8378e63fc93b29de
+
+PODFILE CHECKSUM: 0a02a8aa6659e46937bc5f451bfda257b6356375
+
+COCOAPODS: 1.1.0.rc.2

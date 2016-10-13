@@ -1,0 +1,6 @@
+framework module Pods_FluxWithRxSwiftSample {
+  umbrella header "Pods-FluxWithRxSwiftSample-umbrella.h"
+
+  export *
+  module * { export * }
+}
