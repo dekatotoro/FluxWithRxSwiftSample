@@ -17,7 +17,7 @@ struct SearchUser {
  
     init() {}
  
-    static func make(userName: String, gitHubResponse: GitHubResponse<[GitHubUser]>) -> SearchUser {
+    static func make(from userName: String, gitHubResponse: GitHubResponse<[GitHubUser]>) -> SearchUser {
         var viewModel = SearchUser()
         viewModel.userName = userName
         viewModel.users = gitHubResponse.resource
@@ -26,13 +26,17 @@ struct SearchUser {
         return viewModel
     }
     
-    func update(viewModel: SearchUser) -> SearchUser {
+    func update(with searchUser: SearchUser) -> SearchUser {
         var new = SearchUser()
-        new.userName = viewModel.userName
-        new.users = (users + viewModel.users)
-        new.totalCount = viewModel.totalCount
-        new.linkHeader = viewModel.linkHeader
+        new.userName = searchUser.userName
+        new.users = (users + searchUser.users)
+        new.totalCount = searchUser.totalCount
+        new.linkHeader = searchUser.linkHeader
         return new
+    }
+    
+    var nextPage: Int? {
+        return linkHeader?.next?.page
     }
     
     var totalCountText: String {

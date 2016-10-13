@@ -45,14 +45,14 @@ class SearchUserViewController: UIViewController, Storyboardable {
             .addDisposableTo(rx_disposeBag)
         
         store.rx.error
-            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { error in
                 ErrorNoticeAction.show(.apiError(error))
                 })
             .addDisposableTo(rx_disposeBag)
         
-        store.rx.viewModel.asObservable()
+        store.rx.searchUser.asObservable()
             .map { $0.totalCountText }
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] totalCountText in
                 self.numberLable.text = totalCountText
                 })
@@ -63,7 +63,6 @@ class SearchUserViewController: UIViewController, Storyboardable {
         searchBar.rx.text.asObservable()
             .throttle(0.3, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { query in
                 SearchUserAction.searchUser(query: query, page: 0)
             })
@@ -76,11 +75,11 @@ class SearchUserViewController: UIViewController, Storyboardable {
                     : Observable.empty()
             }
             .filter { [unowned self] in
-                self.store.rx.viewModel.value.linkHeader?.hasNextPage == true
+                self.store.rx.searchUser.value.linkHeader?.hasNextPage == true
             }
             .subscribe(onNext:{ [unowned self] in
-                guard let page = self.store.rx.viewModel.value.linkHeader?.next?.page else { return }
-                SearchUserAction.searchUser(query: self.store.rx.viewModel.value.userName, page: page)
+                guard let nextPage = self.store.rx.searchUser.value.nextPage else { return }
+                SearchUserAction.searchUser(query: self.store.rx.searchUser.value.userName, page: nextPage)
                 })
             .addDisposableTo(rx_disposeBag)
         

@@ -26,12 +26,12 @@ class SearchUserAction {
         self.dispatcher.loading.dispatch(value)
     }
     
+
     func searchUser(query: String, page: Int) {
         guard store.rx.loading.value == false else { return }
         dispatcher.loading.dispatch(true)
-
         if query.isEmpty {
-            dispatcher.viewModel.dispatch(SearchUser())
+            dispatcher.searchUser.dispatch(SearchUser())
             dispatcher.loading.dispatch(false)
             return
         }
@@ -39,7 +39,7 @@ class SearchUserAction {
         let params = ["q" : query,
                       "page" : page,
                       "per_page" : 30] as [String : Any]
-        GitHubAPI.searchUser(customParams: params)
+        GitHubAPI.searchUser(with: params)
             .do(onError: { [unowned self] error in
                 self.dispatcher.error.dispatch(error)
                 self.dispatcher.loading.dispatch(false)
@@ -48,12 +48,12 @@ class SearchUserAction {
                 self.dispatcher.loading.dispatch(false)
                 })
             .subscribe(onNext: { [unowned self] response in
-                let viewModel = SearchUser.make(userName: query, gitHubResponse: response)
+                let searchUser = SearchUser.make(from: query, gitHubResponse: response)
                 if page == 0 {
-                    self.dispatcher.viewModel.dispatch(viewModel)
+                    self.dispatcher.searchUser.dispatch(searchUser)
                 } else {
-                    let storedViewModel = self.store.rx.viewModel.value
-                    self.dispatcher.viewModel.dispatch(storedViewModel.update(viewModel: viewModel))
+                    let storedViewModel = self.store.rx.searchUser.value
+                    self.dispatcher.searchUser.dispatch(storedViewModel.update(with: searchUser))
                 }
                 })
             .addDisposableTo(disposeBag)

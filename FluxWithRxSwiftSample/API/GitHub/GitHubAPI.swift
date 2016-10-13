@@ -39,8 +39,9 @@ struct GitHubResponse<T> {
 
 
 struct GitHubAPI {
-    static func searchUser(customParams: [String : Any]?) -> Observable<GitHubResponse<[GitHubUser]>>  {
-        let request = SearchUserRequest(customParams: customParams)
+    static func searchUser(with params: [String : Any]?) -> Observable<GitHubResponse<[GitHubUser]>>  {
+        let request = SearchUserRequest(customParams: params)
+        
         return Observable.create { observer -> Disposable in
             Session.send(request) { result in
                 switch result {
@@ -52,7 +53,8 @@ struct GitHubAPI {
                 }
             }
             return Disposables.create()
-            }.take(1)
+            }
+            .take(1)
     }
 }
 

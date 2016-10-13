@@ -27,7 +27,7 @@ class SearchUserTableViewDataSource: NSObject {
     }
     
     private func observeStore() {
-        store.rx.viewModel.asObservable()
+        store.rx.searchUser.asObservable()
             .map { $0.users }
             .subscribe(onNext: { [unowned self] users in
                 self.users.value = users

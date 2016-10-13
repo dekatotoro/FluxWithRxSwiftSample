@@ -11,7 +11,7 @@ import RxSwift
 class SearchUserStore: Store, ReactiveCompatible {
     static let shared = SearchUserStore()
     
-    fileprivate let viewModel = Variable<SearchUser>(SearchUser())
+    fileprivate let searchUser = Variable<SearchUser>(SearchUser())
     fileprivate let loading = Variable<Bool>(false)
     fileprivate let error = PublishSubject<Error>()
     
@@ -20,14 +20,14 @@ class SearchUserStore: Store, ReactiveCompatible {
         
         bind(dispatcher.loading, loading)
         bind(dispatcher.error, error)
-        bind(dispatcher.viewModel, viewModel)
+        bind(dispatcher.searchUser, searchUser)
     }
 }
 
 extension Reactive where Base: SearchUserStore {
     
-    var viewModel: Variable<SearchUser> {
-        return base.viewModel
+    var searchUser: Variable<SearchUser> {
+        return base.searchUser
     }
     
     var loading: Variable<Bool> {

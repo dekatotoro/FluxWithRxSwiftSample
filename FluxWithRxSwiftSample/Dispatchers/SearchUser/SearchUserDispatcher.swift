@@ -12,5 +12,5 @@ class SearchUserDispatcher {
     
     let loading = DispatchSubject<Bool>()
     let error = DispatchSubject<Error>()
-    let viewModel = DispatchSubject<SearchUser>()    
+    let searchUser = DispatchSubject<SearchUser>()
 }
