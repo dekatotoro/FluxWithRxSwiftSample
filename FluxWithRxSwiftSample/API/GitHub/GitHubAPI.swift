@@ -42,8 +42,8 @@ struct GitHubAPI {
     static func searchUser(with params: [String : Any]?) -> Observable<GitHubResponse<[GitHubUser]>>  {
         let request = SearchUserRequest(customParams: params)
         
-        return Observable.create { observer -> Disposable in
-            Session.send(request) { result in
+        let observable = Observable<GitHubResponse<[GitHubUser]>>.create { observer -> Disposable in
+            Session.send(request, callbackQueue: .main, handler: { result in
                 switch result {
                 case .success(let users):
                     observer.on(.next(users))
@@ -51,11 +51,11 @@ struct GitHubAPI {
                 case .failure(let error):
                     observer.onError(error)
                 }
-            }
+            })
             return Disposables.create()
-            }
-            .take(1)
+        }
+        return observable.take(1)
+        
     }
 }
-
 

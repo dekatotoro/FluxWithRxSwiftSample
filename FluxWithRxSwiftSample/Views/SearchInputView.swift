@@ -37,7 +37,6 @@ class SearchInputView: UIView, Nibable {
         
         store.rx.searchUser.asObservable()
             .map { $0.totalCountText }
-            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] totalCountText in
                 self.numberLable.text = totalCountText
                 })
@@ -45,7 +44,7 @@ class SearchInputView: UIView, Nibable {
         
         // Dismiss keyboard on scroll
         store.rx.contentOffset.asObservable()
-            .observeOn(MainScheduler.instance)
+            .distinctUntilChanged()
             .subscribe { _ in
                 if self.searchBar.isFirstResponder {
                     _ = self.searchBar.resignFirstResponder()

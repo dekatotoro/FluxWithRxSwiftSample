@@ -40,7 +40,6 @@ class SearchUserViewController: UIViewController, Storyboardable {
         
         store.rx.loading.asObservable()
             .distinctUntilChanged()
-            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] loading in
                 self.loadingView.hidden(!loading)
                 })
