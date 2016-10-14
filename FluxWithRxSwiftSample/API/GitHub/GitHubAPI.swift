@@ -49,13 +49,27 @@ struct GitHubAPI {
                     observer.on(.next(users))
                     observer.onCompleted()
                 case .failure(let error):
-                    observer.onError(error)
+                    switch error {
+                    case .connectionError(let error):
+                        if (error as NSError).code == URLError.cancelled.rawValue {
+                            // onCompleted when cancelled
+                            observer.onCompleted()
+                            break
+                        }
+                        observer.onError(error)
+                    default:
+                        observer.onError(error)
+                    }
                 }
             })
             return Disposables.create()
         }
         return observable.take(1)
         
+    }
+    
+    static func cancelSearchUser() {
+        Session.cancelRequests(with: SearchUserRequest.self)
     }
 }
 

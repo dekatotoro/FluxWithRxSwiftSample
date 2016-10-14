@@ -28,8 +28,11 @@ class SearchUserAction {
     
 
     func searchUser(query: String, page: Int) {
-        guard store.rx.loading.value == false else { return }
+        // before the request, the task in the request cancel
+        GitHubAPI.cancelSearchUser()
+        
         dispatcher.loading.dispatch(true)
+        
         if query.isEmpty {
             dispatcher.searchUser.dispatch(SearchUser())
             dispatcher.loading.dispatch(false)
@@ -44,8 +47,8 @@ class SearchUserAction {
                 self.dispatcher.error.dispatch(error)
                 self.dispatcher.loading.dispatch(false)
                 })
-            .do(onCompleted: {  [unowned self] error in
-                self.dispatcher.loading.dispatch(false)
+            .do(onCompleted: { error in
+                // do nothing
                 })
             .subscribe(onNext: { [unowned self] response in
                 let searchUser = SearchUser.make(from: query, gitHubResponse: response)
@@ -55,6 +58,7 @@ class SearchUserAction {
                     let storedViewModel = self.store.rx.searchUser.value
                     self.dispatcher.searchUser.dispatch(storedViewModel.update(with: searchUser))
                 }
+                self.dispatcher.loading.dispatch(false)
                 })
             .addDisposableTo(disposeBag)
     }
