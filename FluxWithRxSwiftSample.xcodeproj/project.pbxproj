@@ -31,6 +31,8 @@
 		C53F20DB1DAF3A2A0070BF2E /* ErrorNoticeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53F20DA1DAF3A2A0070BF2E /* ErrorNoticeStore.swift */; };
 		C53F20DD1DAF3A350070BF2E /* ErrorNoticeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53F20DC1DAF3A350070BF2E /* ErrorNoticeAction.swift */; };
 		C53F20DF1DAF3A430070BF2E /* ErrorNoticeDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53F20DE1DAF3A430070BF2E /* ErrorNoticeDispatcher.swift */; };
+		C53F20E41DAF9D970070BF2E /* SearchInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53F20E31DAF9D970070BF2E /* SearchInputView.swift */; };
+		C53F20E61DAF9DF50070BF2E /* SearchInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C53F20E51DAF9DF50070BF2E /* SearchInputView.xib */; };
 		C5B89F661DAB6921008305EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B89F651DAB6921008305EC /* AppDelegate.swift */; };
 		C5B89F6D1DAB6921008305EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5B89F6C1DAB6921008305EC /* Assets.xcassets */; };
 		C5B89F701DAB6921008305EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5B89F6E1DAB6921008305EC /* LaunchScreen.storyboard */; };
@@ -88,6 +90,8 @@
 		C53F20DA1DAF3A2A0070BF2E /* ErrorNoticeStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorNoticeStore.swift; sourceTree = "<group>"; };
 		C53F20DC1DAF3A350070BF2E /* ErrorNoticeAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorNoticeAction.swift; sourceTree = "<group>"; };
 		C53F20DE1DAF3A430070BF2E /* ErrorNoticeDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorNoticeDispatcher.swift; sourceTree = "<group>"; };
+		C53F20E31DAF9D970070BF2E /* SearchInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchInputView.swift; sourceTree = "<group>"; };
+		C53F20E51DAF9DF50070BF2E /* SearchInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchInputView.xib; sourceTree = "<group>"; };
 		C5B89F621DAB6921008305EC /* FluxWithRxSwiftSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FluxWithRxSwiftSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B89F651DAB6921008305EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5B89F6C1DAB6921008305EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -262,6 +266,15 @@
 			path = ErrorNotice;
 			sourceTree = "<group>";
 		};
+		C53F20E21DAF9D8A0070BF2E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C53F20E31DAF9D970070BF2E /* SearchInputView.swift */,
+				C53F20E51DAF9DF50070BF2E /* SearchInputView.xib */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		C5B89F591DAB6921008305EC = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +344,7 @@
 		C5B89FAE1DACA370008305EC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C53F20E21DAF9D8A0070BF2E /* Common */,
 				C53F20A01DAF25530070BF2E /* SearchUser */,
 				C5B89FB91DACA46E008305EC /* CellNibable.swift */,
 				C5B89FE01DAE097D008305EC /* ErrorNoticeView.swift */,
@@ -489,6 +503,7 @@
 				C5B89FE51DAE0A75008305EC /* ErrorNoticeView.xib in Resources */,
 				C5B89F701DAB6921008305EC /* LaunchScreen.storyboard in Resources */,
 				C53F20BC1DAF2C330070BF2E /* RootViewController.storyboard in Resources */,
+				C53F20E61DAF9DF50070BF2E /* SearchInputView.xib in Resources */,
 				C53F20C71DAF2CA30070BF2E /* SearchUserCell.xib in Resources */,
 				C53F20B81DAF2C1C0070BF2E /* SearchUserViewController.storyboard in Resources */,
 			);
@@ -620,6 +635,7 @@
 				C53F20951DAE62BF0070BF2E /* ObservableTypeExtension.swift in Sources */,
 				C5B89FC01DACA46E008305EC /* ReusableViewNibable.swift in Sources */,
 				C53F20BD1DAF2C330070BF2E /* RootViewController.swift in Sources */,
+				C53F20E41DAF9D970070BF2E /* SearchInputView.swift in Sources */,
 				C53F20C91DAF2D020070BF2E /* SearchUser.swift in Sources */,
 				C53F20B41DAF2B4D0070BF2E /* SearchUserAction.swift in Sources */,
 				C53F20C61DAF2CA30070BF2E /* SearchUserCell.swift in Sources */,

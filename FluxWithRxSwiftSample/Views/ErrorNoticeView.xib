@@ -8,28 +8,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ErrorNoticeView" customModule="FluxWithRxSwiftSample" customModuleProvider="target">
+        <visualEffectView opaque="NO" contentMode="scaleToFill" id="PdT-ek-Cgz" customClass="ErrorNoticeView" customModule="FluxWithRxSwiftSample" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3AU-2A-cJJ">
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="3AU-2A-cJJ" secondAttribute="trailing" constant="12" id="9aR-0t-6VS"/>
-                <constraint firstAttribute="bottom" secondItem="3AU-2A-cJJ" secondAttribute="bottom" id="TjB-dF-i5f"/>
-                <constraint firstItem="3AU-2A-cJJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="nnM-4C-40Q"/>
-                <constraint firstItem="3AU-2A-cJJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uWw-Mr-uHD"/>
-            </constraints>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="BcF-na-F6l">
+                <frame key="frameInset"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3AU-2A-cJJ">
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="3AU-2A-cJJ" secondAttribute="bottom" id="1tJ-22-3iu"/>
+                    <constraint firstAttribute="trailing" secondItem="3AU-2A-cJJ" secondAttribute="trailing" constant="12" id="jde-Rg-aRy"/>
+                    <constraint firstItem="3AU-2A-cJJ" firstAttribute="top" secondItem="BcF-na-F6l" secondAttribute="top" id="v1e-3L-VUZ"/>
+                    <constraint firstItem="3AU-2A-cJJ" firstAttribute="leading" secondItem="BcF-na-F6l" secondAttribute="leading" constant="12" id="vq6-Yd-uRg"/>
+                </constraints>
+            </view>
+            <blurEffect style="dark"/>
             <connections>
-                <outlet property="descriptionLabel" destination="3AU-2A-cJJ" id="Nwj-xO-Zst"/>
+                <outlet property="descriptionLabel" destination="3AU-2A-cJJ" id="OoS-i7-3Lk"/>
             </connections>
-            <point key="canvasLocation" x="72.5" y="55"/>
-        </view>
+        </visualEffectView>
     </objects>
 </document>

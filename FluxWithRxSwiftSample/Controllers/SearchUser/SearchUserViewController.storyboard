@@ -18,41 +18,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="xsK-T2-gfU">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiF-z3-fgc">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="tyu-Yj-u6O"/>
+                                    <constraint firstAttribute="height" constant="88" id="dDM-2g-Slk"/>
                                 </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8iT-Hi-iAR">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzX-GC-r0V">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Pgc-gc-XXx"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LiF-z3-fgc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0Pp-kg-oyE"/>
                             <constraint firstItem="8iT-Hi-iAR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5Ct-fp-GjX"/>
-                            <constraint firstItem="xsK-T2-gfU" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Ivn-eS-Nk0"/>
-                            <constraint firstItem="NzX-GC-r0V" firstAttribute="top" secondItem="xsK-T2-gfU" secondAttribute="bottom" id="R0C-yL-Icx"/>
-                            <constraint firstAttribute="trailing" secondItem="xsK-T2-gfU" secondAttribute="trailing" id="VGO-eg-Vzt"/>
-                            <constraint firstItem="xsK-T2-gfU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fz8-Yr-57p"/>
-                            <constraint firstAttribute="trailing" secondItem="NzX-GC-r0V" secondAttribute="trailing" constant="12" id="h14-dy-9R5"/>
-                            <constraint firstItem="NzX-GC-r0V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="12" id="ikl-Aj-lWt"/>
-                            <constraint firstItem="8iT-Hi-iAR" firstAttribute="top" secondItem="NzX-GC-r0V" secondAttribute="bottom" id="s1M-tY-8WT"/>
+                            <constraint firstAttribute="trailing" secondItem="LiF-z3-fgc" secondAttribute="trailing" id="EkZ-D3-iMV"/>
+                            <constraint firstItem="LiF-z3-fgc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="H5Y-6h-D9a"/>
+                            <constraint firstItem="8iT-Hi-iAR" firstAttribute="top" secondItem="LiF-z3-fgc" secondAttribute="bottom" id="aff-tI-u8F"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8iT-Hi-iAR" secondAttribute="bottom" id="xlk-qb-bqR"/>
                             <constraint firstAttribute="trailing" secondItem="8iT-Hi-iAR" secondAttribute="trailing" id="zAq-cV-gVa"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="numberLable" destination="NzX-GC-r0V" id="Xgz-fC-qOi"/>
-                        <outlet property="searchBar" destination="xsK-T2-gfU" id="XEi-H4-he8"/>
+                        <outlet property="searchInputContainer" destination="LiF-z3-fgc" id="8Y0-Xv-1C9"/>
                         <outlet property="tableView" destination="8iT-Hi-iAR" id="UHv-Jx-C5K"/>
                     </connections>
                 </viewController>

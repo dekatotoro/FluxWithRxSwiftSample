@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SearchInputView" customModule="FluxWithRxSwiftSample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gDS-Qq-wrM">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="XV8-VQ-Y7R"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rdn-tH-IUp">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Nbh-wh-B8s"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Rdn-tH-IUp" secondAttribute="trailing" constant="12" id="7Fl-su-zEm"/>
+                <constraint firstItem="gDS-Qq-wrM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="98t-8B-aMH"/>
+                <constraint firstItem="Rdn-tH-IUp" firstAttribute="top" secondItem="gDS-Qq-wrM" secondAttribute="bottom" id="Lpm-gS-0bI"/>
+                <constraint firstItem="gDS-Qq-wrM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="UZf-ko-4bk"/>
+                <constraint firstAttribute="trailing" secondItem="gDS-Qq-wrM" secondAttribute="trailing" id="fja-MS-WfQ"/>
+                <constraint firstAttribute="bottom" secondItem="Rdn-tH-IUp" secondAttribute="bottom" id="mlZ-2C-o69"/>
+                <constraint firstItem="Rdn-tH-IUp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="ozU-e9-LUy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="numberLable" destination="Rdn-tH-IUp" id="D4G-QW-U0o"/>
+                <outlet property="searchBar" destination="gDS-Qq-wrM" id="FYj-eU-iC5"/>
+            </connections>
+        </view>
+    </objects>
+</document>

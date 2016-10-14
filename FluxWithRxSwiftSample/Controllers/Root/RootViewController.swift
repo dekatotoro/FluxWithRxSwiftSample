@@ -32,6 +32,10 @@ class RootViewController: UIViewController, Storyboardable {
         
         observeStore()
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
    
     private func observeStore() {
         ErrorNoticeStore.shared.rx.show

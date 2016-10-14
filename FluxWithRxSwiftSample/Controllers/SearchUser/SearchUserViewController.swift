@@ -13,8 +13,7 @@ import Cartography
 
 class SearchUserViewController: UIViewController, Storyboardable {
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var numberLable: UILabel!
+    @IBOutlet weak var searchInputContainer: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     let loadingView = LoadingView()
@@ -25,8 +24,11 @@ class SearchUserViewController: UIViewController, Storyboardable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.lightGray
         loadingView.setType(LoadingView.LoadingType.point)
         view.addConstrainEdges(loadingView)
+        let searchInputView = SearchInputView.makeFromNib()
+        searchInputContainer.addConstrainEdges(searchInputView)
         
         tableViewDataSource.register(tableView: tableView)
         
@@ -49,48 +51,29 @@ class SearchUserViewController: UIViewController, Storyboardable {
                 ErrorNoticeAction.show(.apiError(error))
                 })
             .addDisposableTo(rx_disposeBag)
-        
-        store.rx.searchUser.asObservable()
-            .map { $0.totalCountText }
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [unowned self] totalCountText in
-                self.numberLable.text = totalCountText
-                })
-            .addDisposableTo(rx_disposeBag)
     }
     
     private func observeUI() {
-        searchBar.rx.text.asObservable()
-            .throttle(0.3, scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .subscribe(onNext: { query in
-                SearchUserAction.searchUser(query: query, page: 0)
+        
+        let rx_contentOffsset = tableView.rx.contentOffset.shareReplay(1)
+        
+        rx_contentOffsset
+            .flatMap { contentOffset in
+                self.tableView.isNearBottomEdge(edgeOffset: 20.0)
+                    ? Observable.just(contentOffset)
+                    : Observable.empty()
+            }
+            .filter { [unowned self] _ in
+                self.store.rx.searchUser.value.linkHeader?.hasNextPage == true
+            }
+            .subscribe(onNext:{ [unowned self] _ in
+            guard let nextPage = self.store.rx.searchUser.value.nextPage else { return }
+            SearchUserAction.searchUser(query: self.store.rx.searchUser.value.userName, page: nextPage)
             })
             .addDisposableTo(rx_disposeBag)
         
-        tableView.rx.contentOffset
-            .flatMap { _ in
-                self.tableView.isNearBottomEdge(edgeOffset: 20.0)
-                    ? Observable.just(())
-                    : Observable.empty()
-            }
-            .filter { [unowned self] in
-                self.store.rx.searchUser.value.linkHeader?.hasNextPage == true
-            }
-            .subscribe(onNext:{ [unowned self] in
-                guard let nextPage = self.store.rx.searchUser.value.nextPage else { return }
-                SearchUserAction.searchUser(query: self.store.rx.searchUser.value.userName, page: nextPage)
-                })
-            .addDisposableTo(rx_disposeBag)
-        
-        
-        // Dismiss keyboard on scroll
-        tableView.rx.contentOffset
-            .subscribe { _ in
-                if self.searchBar.isFirstResponder {
-                    _ = self.searchBar.resignFirstResponder()
-                }
-            }
+        rx_contentOffsset
+            .subscribe(onNext: (SearchUserAction.contentOffset))
             .addDisposableTo(rx_disposeBag)
     }
 }

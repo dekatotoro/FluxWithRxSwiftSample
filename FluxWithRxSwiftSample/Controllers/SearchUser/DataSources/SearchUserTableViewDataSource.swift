@@ -21,6 +21,7 @@ class SearchUserTableViewDataSource: NSObject {
         self.tableView = tableView
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
+        self.tableView?.tableFooterView = UIView()
         tableView.registerCell(cell: SearchUserCell.self)
         
         observeStore()

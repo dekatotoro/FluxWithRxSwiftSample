@@ -22,7 +22,7 @@ class SearchUserAction {
         self.store = store
     }
     
-    func loading(value: Bool) {
+    func loading(_ value: Bool) {
         self.dispatcher.loading.dispatch(value)
     }
     
@@ -58,15 +58,23 @@ class SearchUserAction {
                 })
             .addDisposableTo(disposeBag)
     }
+    
+    func contentOffset(_ value: CGPoint) {
+        dispatcher.contentOffset.dispatch(value)
+    }
 }
 
 
 extension SearchUserAction {
-    static func loading(value: Bool) {
-        shared.loading(value: value)
+    static func loading(_ value: Bool) {
+        shared.loading(value)
     }
     
     static func searchUser(query: String, page: Int) {
         shared.searchUser(query: query, page: page)
+    }
+    
+    static func contentOffset(_ value: CGPoint) {
+        shared.contentOffset(value)
     }
 }

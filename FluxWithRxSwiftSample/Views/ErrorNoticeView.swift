@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ErrorNoticeView: UIView, Nibable {
+class ErrorNoticeView: UIVisualEffectView, Nibable {
     
     @IBOutlet weak var descriptionLabel: UILabel!
     
@@ -21,9 +21,14 @@ class ErrorNoticeView: UIView, Nibable {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .lightGray
+        
+        effect = UIBlurEffect(style: .light)
+        alpha = 0.9
+        layer.cornerRadius = 4
+        clipsToBounds = true
+        
         descriptionLabel.font = UIFont.systemFont(ofSize: 14)
-        descriptionLabel.textColor = UIColor.black
+        descriptionLabel.textColor = UIColor.red
         descriptionLabel.textAlignment = .center
         descriptionLabel.numberOfLines = 0
     }

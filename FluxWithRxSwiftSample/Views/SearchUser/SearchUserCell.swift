@@ -18,9 +18,13 @@ class SearchUserCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        configureUI()
+    }
+    
+    private func configureUI() {
         thumbnail.contentMode = .scaleAspectFit
         name.font = UIFont.systemFont(ofSize: 20)
-        name.textColor = UIColor.black
+        name.textColor = UIColor.darkGray
         url.font = UIFont.systemFont(ofSize: 12)
         url.textColor = UIColor.gray
     }

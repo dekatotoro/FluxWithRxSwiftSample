@@ -14,6 +14,7 @@ class SearchUserStore: Store, ReactiveCompatible {
     fileprivate let searchUser = Variable<SearchUser>(SearchUser())
     fileprivate let loading = Variable<Bool>(false)
     fileprivate let error = PublishSubject<Error>()
+    fileprivate let contentOffset = Variable<CGPoint>(.zero)
     
     init(dispatcher: SearchUserDispatcher = .shared) {
         super.init()
@@ -21,6 +22,7 @@ class SearchUserStore: Store, ReactiveCompatible {
         bind(dispatcher.loading, loading)
         bind(dispatcher.error, error)
         bind(dispatcher.searchUser, searchUser)
+        bind(dispatcher.contentOffset, contentOffset)
     }
 }
 
@@ -36,5 +38,9 @@ extension Reactive where Base: SearchUserStore {
     
     var error: PublishSubject<Error> {
         return base.error
+    }
+    
+    var contentOffset: Variable<CGPoint> {
+        return base.contentOffset
     }
 }
