@@ -43,13 +43,12 @@ class SearchInputView: UIView, Nibable {
             .addDisposableTo(rx_disposeBag)
         
         // Dismiss keyboard on scroll
-        store.rx.contentOffset.asObservable()
-            .distinctUntilChanged()
-            .subscribe { _ in
+        store.rx.scrollViewDidEndDragging
+            .subscribe(onNext: { _ in
                 if self.searchBar.isFirstResponder {
                     _ = self.searchBar.resignFirstResponder()
                 }
-            }
+            })
             .addDisposableTo(rx_disposeBag)
     }
     

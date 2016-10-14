@@ -60,3 +60,10 @@ extension SearchUserTableViewDataSource: UITableViewDelegate {
         return 60.5
     }
 }
+
+extension SearchUserTableViewDataSource: UIScrollViewDelegate {
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        SearchUserAction.scrollViewDidEndDragging(decelerate: decelerate)
+    }
+}

@@ -15,6 +15,7 @@ class SearchUserStore: Store, ReactiveCompatible {
     fileprivate let loading = Variable<Bool>(false)
     fileprivate let error = PublishSubject<Error>()
     fileprivate let contentOffset = Variable<CGPoint>(.zero)
+    fileprivate let scrollViewDidEndDragging = PublishSubject<Bool>()
     
     init(dispatcher: SearchUserDispatcher = .shared) {
         super.init()
@@ -23,6 +24,7 @@ class SearchUserStore: Store, ReactiveCompatible {
         bind(dispatcher.error, error)
         bind(dispatcher.searchUser, searchUser)
         bind(dispatcher.contentOffset, contentOffset)
+        bind(dispatcher.scrollViewDidEndDragging, scrollViewDidEndDragging)
     }
 }
 
@@ -42,5 +44,9 @@ extension Reactive where Base: SearchUserStore {
     
     var contentOffset: Variable<CGPoint> {
         return base.contentOffset
+    }
+    
+    var scrollViewDidEndDragging: PublishSubject<Bool> {
+        return base.scrollViewDidEndDragging
     }
 }

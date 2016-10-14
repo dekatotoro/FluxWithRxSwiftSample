@@ -62,6 +62,10 @@ class SearchUserAction {
     func contentOffset(_ value: CGPoint) {
         dispatcher.contentOffset.dispatch(value)
     }
+    
+    func scrollViewDidEndDragging(decelerate: Bool) {
+        dispatcher.scrollViewDidEndDragging.dispatch(decelerate)
+    }
 }
 
 
@@ -76,5 +80,9 @@ extension SearchUserAction {
     
     static func contentOffset(_ value: CGPoint) {
         shared.contentOffset(value)
+    }
+    
+    static func scrollViewDidEndDragging(decelerate: Bool) {
+        shared.scrollViewDidEndDragging(decelerate: decelerate)
     }
 }

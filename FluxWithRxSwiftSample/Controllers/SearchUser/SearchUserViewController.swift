@@ -21,6 +21,7 @@ class SearchUserViewController: UIViewController, Storyboardable {
     private let store = SearchUserStore.shared
     private let tableViewDataSource = SearchUserTableViewDataSource()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,7 +73,9 @@ class SearchUserViewController: UIViewController, Storyboardable {
             .addDisposableTo(rx_disposeBag)
         
         rx_contentOffsset
-            .subscribe(onNext: (SearchUserAction.contentOffset))
+            .subscribe(onNext: { contentOffset in
+                SearchUserAction.contentOffset(contentOffset)
+            })
             .addDisposableTo(rx_disposeBag)
     }
 }

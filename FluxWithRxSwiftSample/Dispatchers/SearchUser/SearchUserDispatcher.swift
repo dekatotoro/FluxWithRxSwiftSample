@@ -15,4 +15,5 @@ class SearchUserDispatcher {
     let error = DispatchSubject<Error>()
     let searchUser = DispatchSubject<SearchUser>()
     let contentOffset = DispatchSubject<CGPoint>()
+    let scrollViewDidEndDragging = DispatchSubject<Bool>()
 }
