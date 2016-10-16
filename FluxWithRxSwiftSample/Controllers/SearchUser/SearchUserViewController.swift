@@ -25,16 +25,19 @@ class SearchUserViewController: UIViewController, Storyboardable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureUI()
+        observeStore()
+        observeUI()
+    }
+    
+    private func configureUI() {
         view.backgroundColor = UIColor.lightGray
         loadingView.setType(LoadingView.LoadingType.point)
         view.addConstrainEdges(loadingView)
-        let searchInputView = SearchInputView.makeFromNib()
+        let searchInputView = SearchUserInputView.makeFromNib()
         searchInputContainer.addConstrainEdges(searchInputView)
         
         tableViewDataSource.register(tableView: tableView)
-        
-        observeStore()
-        observeUI()
     }
     
     private func observeStore() {
@@ -64,11 +67,12 @@ class SearchUserViewController: UIViewController, Storyboardable {
                     : Observable.empty()
             }
             .filter { [unowned self] _ in
-                self.store.rx.searchUser.value.linkHeader?.hasNextPage == true
+                self.store.rx.searchUser.value.linkHeader?.hasNextPage == true &&
+                self.store.rx.loading.value == false
             }
             .subscribe(onNext:{ [unowned self] _ in
             guard let nextPage = self.store.rx.searchUser.value.nextPage else { return }
-            SearchUserAction.searchUser(query: self.store.rx.searchUser.value.userName, page: nextPage)
+            SearchUserAction.searchUser(query: self.store.rx.searchUser.value.searchkey, page: nextPage)
             })
             .addDisposableTo(rx_disposeBag)
         

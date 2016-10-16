@@ -11,7 +11,7 @@ import RxSwift
 class SearchUserStore: Store, ReactiveCompatible {
     static let shared = SearchUserStore()
     
-    fileprivate let searchUser = Variable<SearchUser>(SearchUser())
+    fileprivate let searchUser = Variable<SearchModel<GitHubUser>>(SearchModel())
     fileprivate let loading = Variable<Bool>(false)
     fileprivate let error = PublishSubject<Error>()
     fileprivate let contentOffset = Variable<CGPoint>(.zero)
@@ -22,15 +22,25 @@ class SearchUserStore: Store, ReactiveCompatible {
         
         bind(dispatcher.loading, loading)
         bind(dispatcher.error, error)
-        bind(dispatcher.searchUser, searchUser)
+        
+        dispatcher.searchUser.asObservable()
+            .subscribe(onNext: { [unowned self] page, searchUser in
+                if page == 0 {
+                    self.searchUser.value = searchUser
+                } else {
+                    self.searchUser.value = self.searchUser.value.concat(searchModel: searchUser)
+                }
+            })
+        .addDisposableTo(disposeBag)
         bind(dispatcher.contentOffset, contentOffset)
+        
         bind(dispatcher.scrollViewDidEndDragging, scrollViewDidEndDragging)
     }
 }
 
 extension Reactive where Base: SearchUserStore {
     
-    var searchUser: Variable<SearchUser> {
+    var searchUser: Variable<SearchModel<GitHubUser>> {
         return base.searchUser
     }
     

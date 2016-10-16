@@ -1,5 +1,5 @@
 //
-//  SearchInputView.swift
+//  SearchUserInputView.swift
 //  FluxWithRxSwiftSample
 //
 //  Created by Yuji Hato on 2016/10/13.
@@ -10,7 +10,7 @@
 import UIKit
 import RxSwift
 
-class SearchInputView: UIView, Nibable {
+class SearchUserInputView: UIView, Nibable {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var numberLable: UILabel!
@@ -54,6 +54,7 @@ class SearchInputView: UIView, Nibable {
     
     private func observeUI() {
         searchBar.rx.text.asDriver()
+            .skip(1) // skip init time
             .throttle(0.3)
             .distinctUntilChanged()
             .drive(onNext: { query in

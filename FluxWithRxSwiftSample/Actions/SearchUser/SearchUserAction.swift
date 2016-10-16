@@ -34,7 +34,7 @@ class SearchUserAction {
         dispatcher.loading.dispatch(true)
         
         if query.isEmpty {
-            dispatcher.searchUser.dispatch(SearchUser())
+            dispatcher.searchUser.dispatch((0, SearchModel<GitHubUser>()))
             dispatcher.loading.dispatch(false)
             return
         }
@@ -51,13 +51,8 @@ class SearchUserAction {
                 // do nothing
                 })
             .subscribe(onNext: { [unowned self] response in
-                let searchUser = SearchUser.make(from: query, gitHubResponse: response)
-                if page == 0 {
-                    self.dispatcher.searchUser.dispatch(searchUser)
-                } else {
-                    let storedViewModel = self.store.rx.searchUser.value
-                    self.dispatcher.searchUser.dispatch(storedViewModel.update(with: searchUser))
-                }
+                let searchUser = SearchModel.make(from: query, gitHubResponse: response)
+                self.dispatcher.searchUser.dispatch((page, searchUser))
                 self.dispatcher.loading.dispatch(false)
                 })
             .addDisposableTo(disposeBag)

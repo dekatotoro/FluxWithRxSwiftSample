@@ -18,20 +18,21 @@ class SearchUserTableViewDataSource: NSObject {
     fileprivate let store: SearchUserStore = .shared
     
     func register(tableView: UITableView) {
-        self.tableView = tableView
-        self.tableView?.dataSource = self
-        self.tableView?.delegate = self
-        self.tableView?.tableFooterView = UIView()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableFooterView = UIView()
         tableView.registerCell(cell: SearchUserCell.self)
+        self.tableView = tableView
         
         observeStore()
     }
     
     private func observeStore() {
         store.rx.searchUser.asObservable()
-            .map { $0.users }
-            .subscribe(onNext: { [unowned self] users in
-                self.users.value = users
+            .map { $0.elements }
+            .subscribe(onNext: { [unowned self] elements in
+                self.users.value = elements
                 self.tableView?.reloadData()
                 })
             .addDisposableTo(rx_disposeBag)

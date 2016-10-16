@@ -13,7 +13,7 @@ class SearchUserDispatcher {
     
     let loading = DispatchSubject<Bool>()
     let error = DispatchSubject<Error>()
-    let searchUser = DispatchSubject<SearchUser>()
+    let searchUser = DispatchSubject<(Int, SearchModel<GitHubUser>)>()
     let contentOffset = DispatchSubject<CGPoint>()
     let scrollViewDidEndDragging = DispatchSubject<Bool>()
 }
