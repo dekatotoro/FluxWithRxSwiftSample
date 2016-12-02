@@ -364,15 +364,15 @@
 		C5B89FAF1DACA383008305EC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C507A64E1DF1741800CEDF04 /* DriverExtension.swift */,
 				C5B89FB11DACA467008305EC /* NSObject+Rx.swift */,
 				C5B89FB21DACA467008305EC /* NSObjectProtocolExtension.swift */,
 				C53F20941DAE62BF0070BF2E /* ObservableTypeExtension.swift */,
+				C507A64C1DF173C200CEDF04 /* SequenceTypeExtension.swift */,
 				C5B89FB31DACA467008305EC /* UIScrollViewExtension.swift */,
 				C5B89FB41DACA467008305EC /* UITableViewCellExtension.swift */,
 				C53F209A1DAF24170070BF2E /* UIViewControllerExtension.swift */,
 				C5B89FCC1DACA893008305EC /* UIViewExtension.swift */,
-				C507A64C1DF173C200CEDF04 /* SequenceTypeExtension.swift */,
-				C507A64E1DF1741800CEDF04 /* DriverExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -623,10 +623,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B89F661DAB6921008305EC /* AppDelegate.swift in Sources */,
-				C507A64F1DF1741800CEDF04 /* DriverExtension.swift in Sources */,
 				C5B89FBE1DACA46E008305EC /* CellNibable.swift in Sources */,
 				C53F20D01DAF302D0070BF2E /* Config.swift in Sources */,
 				C5B89FD21DACAC27008305EC /* DispatchSubject.swift in Sources */,
+				C507A64F1DF1741800CEDF04 /* DriverExtension.swift in Sources */,
 				C53F20DD1DAF3A350070BF2E /* ErrorNoticeAction.swift in Sources */,
 				C53F20DF1DAF3A430070BF2E /* ErrorNoticeDispatcher.swift in Sources */,
 				C53F20DB1DAF3A2A0070BF2E /* ErrorNoticeStore.swift in Sources */,
@@ -650,12 +650,12 @@
 				C53F20C31DAF2C7B0070BF2E /* SearchUserStore.swift in Sources */,
 				C53F20BF1DAF2C420070BF2E /* SearchUserTableViewDataSource.swift in Sources */,
 				C53F20B91DAF2C1C0070BF2E /* SearchUserViewController.swift in Sources */,
+				C507A64D1DF173C200CEDF04 /* SequenceTypeExtension.swift in Sources */,
 				C5B89FD41DACAC59008305EC /* Store.swift in Sources */,
 				C53F20991DAF23E60070BF2E /* Storyboardable.swift in Sources */,
 				C5B89FB71DACA467008305EC /* UIScrollViewExtension.swift in Sources */,
 				C5B89FB81DACA467008305EC /* UITableViewCellExtension.swift in Sources */,
 				C53F209B1DAF24170070BF2E /* UIViewControllerExtension.swift in Sources */,
-				C507A64D1DF173C200CEDF04 /* SequenceTypeExtension.swift in Sources */,
 				C5B89FCD1DACA893008305EC /* UIViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
