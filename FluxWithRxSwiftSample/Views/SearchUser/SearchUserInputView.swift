@@ -55,6 +55,7 @@ class SearchUserInputView: UIView, Nibable {
     private func observeUI() {
         searchBar.rx.text.asDriver()
             .skip(1) // skip init time
+            .filterNil()
             .throttle(0.3)
             .distinctUntilChanged()
             .drive(onNext: { query in
