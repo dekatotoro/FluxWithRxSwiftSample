@@ -1,5 +1,5 @@
 //
-//  SequenceTypeExtensions.swift
+//  SequenceTypeExtension.swift
 //  FluxWithRxSwiftSample
 //
 //  Created by Yuji Hato on 2016/12/02.

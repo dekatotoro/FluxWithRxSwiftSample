@@ -8,7 +8,7 @@
 
 import RxSwift
 
-class SearchUserStore: Store, ReactiveCompatible {
+class SearchUserStore: Store {
     static let shared = SearchUserStore()
     
     fileprivate let searchUser = Variable<SearchModel<GitHubUser>>(SearchModel())
@@ -16,6 +16,11 @@ class SearchUserStore: Store, ReactiveCompatible {
     fileprivate let error = PublishSubject<Error>()
     fileprivate let contentOffset = Variable<CGPoint>(.zero)
     fileprivate let scrollViewDidEndDragging = PublishSubject<Bool>()
+    
+    // shared variables
+    fileprivate lazy var sharedSearchUser: Observable<SearchModel<GitHubUser>> = self.searchUser.asShareReplayLatest()
+    fileprivate lazy var sharedLoading: Observable<Bool> = self.loading.asShareReplayLatest()
+    fileprivate lazy var sharedContentOffset: Observable<CGPoint> = self.contentOffset.asShareReplayLatest()
     
     init(dispatcher: SearchUserDispatcher = .shared) {
         super.init()
@@ -40,23 +45,32 @@ class SearchUserStore: Store, ReactiveCompatible {
 
 extension Reactive where Base: SearchUserStore {
     
-    var searchUser: Variable<SearchModel<GitHubUser>> {
-        return base.searchUser
+    var searchUser: Observable<SearchModel<GitHubUser>> {
+        return base.sharedSearchUser
     }
-    
-    var loading: Variable<Bool> {
-        return base.loading
+    var loading: Observable<Bool> {
+        return base.sharedLoading
     }
-    
-    var error: PublishSubject<Error> {
+    var error: Observable<Error> {
         return base.error
     }
-    
-    var contentOffset: Variable<CGPoint> {
-        return base.contentOffset
+    var contentOffset: Observable<CGPoint> {
+        return base.sharedContentOffset
     }
-    
-    var scrollViewDidEndDragging: PublishSubject<Bool> {
+    var scrollViewDidEndDragging: Observable<Bool> {
         return base.scrollViewDidEndDragging
+    }
+}
+
+extension StoreVariable where Base: SearchUserStore {
+    
+    var searchUser: SearchModel<GitHubUser> {
+        return base.searchUser.value
+    }
+    var loading: Bool {
+        return base.loading.value
+    }
+    var contentOffset: CGPoint {
+        return base.contentOffset.value
     }
 }

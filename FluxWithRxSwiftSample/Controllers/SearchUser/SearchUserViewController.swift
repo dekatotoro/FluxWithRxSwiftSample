@@ -67,12 +67,12 @@ class SearchUserViewController: UIViewController, Storyboardable {
                     : Observable.empty()
             }
             .filter { [unowned self] _ in
-                self.store.rx.searchUser.value.linkHeader?.hasNextPage == true &&
-                self.store.rx.loading.value == false
+                self.store.sv.searchUser.linkHeader?.hasNextPage == true &&
+                self.store.sv.loading == false
             }
             .subscribe(onNext:{ [unowned self] _ in
-            guard let nextPage = self.store.rx.searchUser.value.nextPage else { return }
-            SearchUserAction.searchUser(query: self.store.rx.searchUser.value.searchkey, page: nextPage)
+            guard let nextPage = self.store.sv.searchUser.nextPage else { return }
+            SearchUserAction.searchUser(query: self.store.sv.searchUser.searchkey, page: nextPage)
             })
             .addDisposableTo(rx_disposeBag)
         

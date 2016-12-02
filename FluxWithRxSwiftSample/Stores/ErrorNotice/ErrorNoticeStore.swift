@@ -26,13 +26,16 @@ enum ErrorNoticeType: CustomStringConvertible, Equatable {
     }
 }
 
-class ErrorNoticeStore: Store, ReactiveCompatible {
+class ErrorNoticeStore: Store {
     
     static let shared = ErrorNoticeStore()
     
     fileprivate let noticeTypes = Variable<[ErrorNoticeType]>([])
     fileprivate let show = PublishSubject<ErrorNoticeType>()
     fileprivate let hide = PublishSubject<Void>()
+    
+    // shared variables
+    fileprivate lazy var sharedNoticeTypes: Observable<[ErrorNoticeType]> = self.noticeTypes.asShareReplayLatest()
     
     init(dispatcher: ErrorNoticeDispatcher = ErrorNoticeDispatcher.shared) {
         super.init()
@@ -93,16 +96,22 @@ class ErrorNoticeStore: Store, ReactiveCompatible {
 
 extension Reactive where Base: ErrorNoticeStore {
     
-    var noticeTypes: Variable<[ErrorNoticeType]> {
-        return base.noticeTypes
+    var noticeTypes: Observable<[ErrorNoticeType]> {
+        return base.sharedNoticeTypes
     }
     
-    var show: PublishSubject<ErrorNoticeType> {
+    var show: Observable<ErrorNoticeType> {
         return base.show
     }
     
-    var error: PublishSubject<Void> {
+    var error: Observable<Void> {
         return base.hide
     }
 }
 
+extension StoreVariable where Base: ErrorNoticeStore {
+    
+    var noticeTypes: [ErrorNoticeType] {
+        return base.noticeTypes.value
+    }
+}
